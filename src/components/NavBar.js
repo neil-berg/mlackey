@@ -14,29 +14,30 @@ const NavContainer = styled.ul`
   background: goldenrod;
 
   > li {
-    color: var(--black);
     padding: 0.15em 0;
   }
+`;
 
-  > li a {
-    color: blue;
-  }
+const StyledLink = styled(Link)`
+  color: ${props => (props.selected ? 'white' : 'black')};
 `;
 
 const NavBar = () => {
   return (
-    <NavContainer>
+    <NavContainer id="nav">
       <li>
-        <Link to="/">Meredith Lackey</Link>
+        <StyledLink to="/" selected>
+          Meredith Lackey
+        </StyledLink>
       </li>
       <li>
-        <Link to="/work">Work</Link>
+        <StyledLink to="/work">Work</StyledLink>
       </li>
       <li>
         <a href="google.com">Notes</a>
       </li>
       <li>
-        <Link to="/contact">Contact</Link>
+        <StyledLink to="/contact">Contact</StyledLink>
       </li>
     </NavContainer>
   );

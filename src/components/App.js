@@ -12,16 +12,33 @@ import '../index.css';
 
 class App extends React.Component {
   state = {
-    section: ''
+    galleryHeight: null
   };
+
+  setGalleryHeight = height => {
+    this.setState({ galleryHeight: height });
+  };
+
+  // componentDidMount() {
+  //   const initialGalleryHeight = window.innerHeight - 40;
+  //   const sectionMinHeight = window.innerHeight - 100 - 40;
+  //   this.setState({ sectionMinHeight });
+  // }
+
   render() {
     return (
       <div>
         <Router>
-          <SideGallery />
+          <SideGallery galleryHeight={this.state.galleryHeight} />
           <NavBar />
           <Switch>
-            <Route exact path="/" component={About} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <About {...props} setGalleryHeight={this.setGalleryHeight} />
+              )}
+            />
             <Route path="/work" component={Work} />
             <Route path="/contact" component={Contact} />
             <Route component={NotFound} />
