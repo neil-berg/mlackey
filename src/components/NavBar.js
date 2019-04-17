@@ -8,10 +8,10 @@ const NavContainer = styled.ul`
   height: 100px;
   align-items: flex-start;
   justify-content: center;
-  margin: 1em 1em 0 160px;
-  padding-left: 1em;
+  margin: 20px 20px 0 160px;
+  padding-left: 20px;
   background: var(--red);
-  background: yellow;
+  background: goldenrod;
 
   > li {
     color: var(--black);
