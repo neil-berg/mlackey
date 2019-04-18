@@ -37,7 +37,9 @@ class NavBar extends React.Component {
 
   setNavValue = e => {
     if (e.target.nodeName === 'A') {
-      this.setState({ navValue: e.target.innerText });
+      if (e.target.innerText !== 'Notes') {
+        this.setState({ navValue: e.target.innerText });
+      }
     }
   };
 

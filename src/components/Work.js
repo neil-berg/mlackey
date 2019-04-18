@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Main = styled.main`
   background: var(--red);
@@ -54,6 +55,15 @@ const Main = styled.main`
       }
     }
   }
+
+  .fade-appear {
+    opacity: 0.01;
+  }
+
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
+  }
 `;
 
 class Work extends React.Component {
@@ -70,41 +80,50 @@ class Work extends React.Component {
         sectionMinHeight={this.props.sectionMinHeight}
         ref={sectionRef => (this.sectionRef = sectionRef)}
       >
-        <div className="movie cablestreet">
-          <h2 className="title">CABLESTREET / 电缆街</h2>
-          <p className="overview">
-            A cable system designed by controversial Chinese company Huawei
-            Technologies enables communication between an expert and a machine.
-            Time succumbs to space in a New Cold War played out in materials.
-          </p>
-          <a className="trailer" href="https://vimeo.com/182922960">
-            TRAILER
-          </a>
-          <a
-            href="https://www.sundance.org/projects/cablestreet"
-            className="premier"
-          >
-            PREMIERE
-          </a>
-        </div>
-        <div className="movie carwarsh">
-          <h2 className="title">OPERATION CAR WASH / OPERAÇÃO LAVA JATO</h2>
-          <p className="overview">
-            In Salvador, Brazil, workers protests the ouster of Brazilian Labor
-            Party President, Dilma Rousseff. In Cleveland, Ohio, gun rights
-            advocates clash with anti-fascists during the Republican nomination
-            of Donald Trump. A verité portrait of populism as seen from the
-            public square.
-          </p>
-          <p className="support">
-            Produced with support from the{' '}
-            <a href="http://sacatar.org">Sacatar Foundation</a>
-          </p>
-          <a href="" className="support" />
-          <a className="trailer" href="">
-            TRAILER
-          </a>
-        </div>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionAppear={true}
+          transitionAppearTimeout={400}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
+          <div className="movie cablestreet">
+            <h2 className="title">CABLESTREET / 电缆街</h2>
+            <p className="overview">
+              A cable system designed by controversial Chinese company Huawei
+              Technologies enables communication between an expert and a
+              machine. Time succumbs to space in a New Cold War played out in
+              materials.
+            </p>
+            <a className="trailer" href="https://vimeo.com/182922960">
+              TRAILER
+            </a>
+            <a
+              href="https://www.sundance.org/projects/cablestreet"
+              className="premier"
+            >
+              PREMIERE
+            </a>
+          </div>
+          <div className="movie carwarsh">
+            <h2 className="title">OPERATION CAR WASH / OPERAÇÃO LAVA JATO</h2>
+            <p className="overview">
+              In Salvador, Brazil, workers protests the ouster of Brazilian
+              Labor Party President, Dilma Rousseff. In Cleveland, Ohio, gun
+              rights advocates clash with anti-fascists during the Republican
+              nomination of Donald Trump. A verité portrait of populism as seen
+              from the public square.
+            </p>
+            <p className="support">
+              Produced with support from the{' '}
+              <a href="http://sacatar.org">Sacatar Foundation</a>
+            </p>
+            <a href="" className="support" />
+            <a className="trailer" href="">
+              TRAILER
+            </a>
+          </div>
+        </CSSTransitionGroup>
       </Main>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Main = styled.main`
   background: var(--red);
@@ -14,6 +15,15 @@ const Main = styled.main`
     font-size: 1em;
     max-width: 500px;
     padding-bottom: 1em;
+  }
+
+  .fade-appear {
+    opacity: 0.01;
+  }
+
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
   }
 `;
 
@@ -31,21 +41,29 @@ class About extends React.Component {
         sectionMinHeight={this.props.sectionMinHeight}
         ref={sectionRef => (this.sectionRef = sectionRef)}
       >
-        <p className="about">
-          Meredith Lackey is a filmmaker based in Los Angeles.
-        </p>
-        <p className="about">
-          Her work has screened internationally at festivals including Sundance,
-          NYFF, FIDMarseille, and Edinburgh.
-        </p>
-        <p className="about">
-          She holds a BA in Philosophy and Media from Hampshire College, and an
-          MFA in Moving Image from the University of Illinois Chicago.
-        </p>
-        <p className="about">
-          She is the recipient of the UFVA Carole Fielding Grant and is a
-          Princess Grace Foundation Honorarium winner.
-        </p>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionAppear={true}
+          transitionAppearTimeout={400}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
+          <p className="about">
+            Meredith Lackey is a filmmaker based in Los Angeles.
+          </p>
+          <p className="about">
+            Her work has screened internationally at festivals including
+            Sundance, NYFF, FIDMarseille, and Edinburgh.
+          </p>
+          <p className="about">
+            She holds a BA in Philosophy and Media from Hampshire College, and
+            an MFA in Moving Image from the University of Illinois Chicago.
+          </p>
+          <p className="about">
+            She is the recipient of the UFVA Carole Fielding Grant and is a
+            Princess Grace Foundation Honorarium winner.
+          </p>
+        </CSSTransitionGroup>
       </Main>
     );
   }

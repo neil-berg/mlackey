@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Main = styled.main`
   background: var(--red);
@@ -49,6 +50,15 @@ const Main = styled.main`
       }
     }
   }
+
+  .fade-appear {
+    opacity: 0.01;
+  }
+
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 0.4s ease-in;
+  }
 `;
 
 class Contact extends React.Component {
@@ -65,22 +75,33 @@ class Contact extends React.Component {
         sectionMinHeight={this.props.sectionMinHeight}
         ref={sectionRef => (this.sectionRef = sectionRef)}
       >
-        <a className="email" href="mailto:mhelenelackey@gmail.com">
-          EMAIL
-        </a>
-        <a
-          className="pgp"
-          href="/assets/Meredith-Lackey-AB873A70–Public.asc"
-          download
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionAppear={true}
+          transitionAppearTimeout={400}
+          transitionEnter={false}
+          transitionLeave={false}
         >
-          PGP
-        </a>
-        <span className="pgp-numbers">
-          / D745 45C1 9117 640A BE2B A754 C3EB D3AF AB87 3A70
-        </span>
-        <p className="footer">
-          site by <a href="https://neilberg.dev">neil berg</a>
-        </p>
+          <a className="email" href="mailto:mhelenelackey@gmail.com">
+            EMAIL
+          </a>
+          <a
+            className="pgp"
+            href="/assets/Meredith-Lackey-AB873A70–Public.asc"
+            download
+          >
+            PGP
+          </a>
+          <span className="pgp-numbers">
+            / D745 45C1 9117 640A BE2B A754 C3EB D3AF AB87 3A70
+          </span>
+          <p className="footer">
+            site by{' '}
+            <a href="https://neilberg.dev" target="_blank">
+              neil berg
+            </a>
+          </p>
+        </CSSTransitionGroup>
       </Main>
     );
   }
