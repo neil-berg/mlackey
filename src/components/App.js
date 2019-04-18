@@ -6,7 +6,6 @@ import NavBar from './NavBar';
 import About from './About';
 import Work from './Work';
 import Contact from './Contact';
-import Footer from './Footer';
 import NotFound from './NotFound';
 
 import '../index.css';

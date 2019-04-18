@@ -9,6 +9,7 @@ const Main = styled.main`
   // viewport height space below NavBar (120px) + 20px of
   // margin above NavBar and below this section (40px total)
   min-height: calc(100vh - 160px);
+  position: relative;
 
   a {
     display: block;
@@ -30,6 +31,23 @@ const Main = styled.main`
 
   .pgp-numbers {
     font-size: 0.8em;
+  }
+
+  p.footer {
+    position: absolute;
+    bottom: 0.75em;
+    left: 1em;
+    font-size: 0.9em;
+
+    a {
+      display: inline;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease-out;
+      :hover {
+        color: var(--white);
+      }
+    }
   }
 `;
 
@@ -60,6 +78,9 @@ class Contact extends React.Component {
         <span className="pgp-numbers">
           / D745 45C1 9117 640A BE2B A754 C3EB D3AF AB87 3A70
         </span>
+        <p className="footer">
+          site by <a href="https://neilberg.dev">neil berg</a>
+        </p>
       </Main>
     );
   }

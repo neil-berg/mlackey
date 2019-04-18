@@ -12,39 +12,76 @@ const NavContainer = styled.ul`
   padding: 1.75em;
   background: var(--red);
 
-  > li {
+  li {
     padding: 0.15em 0;
     font-size: 1.15em;
     font-weight: bold;
     letter-spacing: 0.05em;
   }
+
+  li a {
+    color: var(--black);
+    transition: all 0.3s ease-out;
+    :hover {
+      color: var(--white);
+    }
+  }
+
+  li a.selected {
+    color: var(--white);
+  }
 `;
 
-const StyledLink = styled(Link)`
-  color: ${props => (props.selected ? 'var(--white)' : 'var(--black)')};
-`;
+class NavBar extends React.Component {
+  state = { navValue: 'Meredith Lackey' };
 
-const NavBar = () => {
-  return (
-    <nav>
-      <NavContainer>
-        <li>
-          <StyledLink to="/" selected>
-            Meredith Lackey
-          </StyledLink>
-        </li>
-        <li>
-          <StyledLink to="/work">Work</StyledLink>
-        </li>
-        <li>
-          <a href="google.com">Notes</a>
-        </li>
-        <li>
-          <StyledLink to="/contact">Contact</StyledLink>
-        </li>
-      </NavContainer>
-    </nav>
-  );
-};
+  setNavValue = e => {
+    if (e.target.nodeName === 'A') {
+      this.setState({ navValue: e.target.innerText });
+    }
+  };
+
+  render() {
+    const navItems = [
+      { value: 'Meredith Lackey', path: '/' },
+      { value: 'Work', path: '/work' },
+      {
+        value: 'Notes',
+        path:
+          'https://docs.google.com/document/d/1BC2HZorFld9sInMfIKiXZGsLbNu1UgW5zJbdb39VeLk/edit?usp=sharing'
+      },
+      { value: 'Contact', path: '/contact' }
+    ];
+    const navList = navItems.map((item, i) => {
+      if (item.value !== 'Notes') {
+        return (
+          <li key={i}>
+            <Link
+              to={`${item.path}`}
+              className={`${
+                item.value === this.state.navValue ? 'selected' : ''
+              }`}
+            >
+              {item.value}
+            </Link>
+          </li>
+        );
+      } else {
+        return (
+          <li key={i}>
+            <a href={`${item.path}`} target="_blank">
+              {item.value}
+            </a>
+          </li>
+        );
+      }
+    });
+    return (
+      <nav onClick={e => this.setNavValue(e)}>
+        <NavContainer>{navList}</NavContainer>
+      </nav>
+    );
+  }
+}
 
 export default NavBar;
