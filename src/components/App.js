@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import About from './About';
 import Work from './Work';
 import Contact from './Contact';
+import Footer from './Footer';
 import NotFound from './NotFound';
 
 import '../index.css';
@@ -18,12 +19,6 @@ class App extends React.Component {
   setGalleryHeight = height => {
     this.setState({ galleryHeight: height });
   };
-
-  // componentDidMount() {
-  //   const initialGalleryHeight = window.innerHeight - 40;
-  //   const sectionMinHeight = window.innerHeight - 100 - 40;
-  //   this.setState({ sectionMinHeight });
-  // }
 
   render() {
     return (
@@ -39,8 +34,20 @@ class App extends React.Component {
                 <About {...props} setGalleryHeight={this.setGalleryHeight} />
               )}
             />
-            <Route path="/work" component={Work} />
-            <Route path="/contact" component={Contact} />
+            <Route
+              exact
+              path="/work"
+              render={props => (
+                <Work {...props} setGalleryHeight={this.setGalleryHeight} />
+              )}
+            />
+            <Route
+              exact
+              path="/contact"
+              render={props => (
+                <Contact {...props} setGalleryHeight={this.setGalleryHeight} />
+              )}
+            />
             <Route component={NotFound} />
           </Switch>
         </Router>
