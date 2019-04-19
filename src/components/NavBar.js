@@ -31,7 +31,7 @@ const NavContainer = styled.ul`
   // Disbale hover (stop it from sticking) on small devices
   @media screen and (min-width: 800px) {
     li a:hover {
-      color: lightgrey;
+      color: var(--white);
     }
   }
 `;
