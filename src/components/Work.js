@@ -4,12 +4,12 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 const Main = styled.main`
   background: var(--red);
-  margin: 0 20px 20px 170px;
+  margin: 0 10px 10px 70px;
   padding: 3em 1em 0 1.1em;
   // Min height ensures that this section spans entire
-  // viewport height space below NavBar (120px) + 20px of
-  // margin above NavBar and below this section (40px total)
-  min-height: calc(100vh - 160px);
+  // viewport height space below NavBar (120px) + 10px of
+  // margin above NavBar and below this section (20px total)
+  min-height: calc(100vh - 140px);
 
   .movie {
     font-size: 1em;
@@ -70,7 +70,7 @@ class Work extends React.Component {
   componentDidMount() {
     const sectionHeight = this.sectionRef.clientHeight;
     const sectionOffsetTop = this.sectionRef.offsetTop;
-    const galleryHeight = sectionOffsetTop + sectionHeight - 20;
+    const galleryHeight = sectionOffsetTop + sectionHeight - 10;
     this.props.setGalleryHeight(galleryHeight);
   }
 
@@ -99,8 +99,10 @@ class Work extends React.Component {
               TRAILER
             </a>
             <a
-              href="https://www.sundance.org/projects/cablestreet"
               className="premier"
+              href="https://www.sundance.org/projects/cablestreet"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               PREMIERE
             </a>
@@ -118,8 +120,12 @@ class Work extends React.Component {
               Produced with support from the{' '}
               <a href="http://sacatar.org">Sacatar Foundation</a>
             </p>
-            <a href="" className="support" />
-            <a className="trailer" href="">
+            <a
+              className="trailer"
+              href="https://vimeo.com/182922960"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               TRAILER
             </a>
           </div>

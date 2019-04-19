@@ -4,12 +4,12 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 const Main = styled.main`
   background: var(--red);
-  margin: 0 20px 20px 170px;
+  margin: 0 10px 10px 70px;
   padding: 3em 1em 0 1.1em;
   // Min height ensures that this section spans entire
-  // viewport height space below NavBar (120px) + 20px of
-  // margin above NavBar and below this section (40px total)
-  min-height: calc(100vh - 160px);
+  // viewport height space below NavBar (120px) + 10px of
+  // margin above NavBar and below this section (20px total)
+  min-height: calc(100vh - 140px);
 
   p.about {
     font-size: 1em;
@@ -31,7 +31,7 @@ class About extends React.Component {
   componentDidMount() {
     const sectionHeight = this.sectionRef.clientHeight;
     const sectionOffsetTop = this.sectionRef.offsetTop;
-    const galleryHeight = sectionOffsetTop + sectionHeight - 20;
+    const galleryHeight = sectionOffsetTop + sectionHeight - 10;
     this.props.setGalleryHeight(galleryHeight);
   }
 

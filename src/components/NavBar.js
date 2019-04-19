@@ -8,8 +8,8 @@ const NavContainer = styled.ul`
   height: 120px;
   align-items: flex-start;
   justify-content: center;
-  margin: 20px 20px 0 160px;
-  padding: 1.75em;
+  margin: 10px 10px 0 70px;
+  padding: 1.75em 1.1em;
   background: var(--red);
 
   li {
@@ -71,7 +71,7 @@ class NavBar extends React.Component {
       } else {
         return (
           <li key={i}>
-            <a href={`${item.path}`} target="_blank">
+            <a href={`${item.path}`} target="_blank" rel="noopener noreferrer">
               {item.value}
             </a>
           </li>

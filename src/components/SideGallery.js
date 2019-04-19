@@ -1,33 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SideContainer = styled.div`
-  width: 150px;
+import { numImages } from '../helper';
+
+const ImageContainer = styled.div`
+  width: 50px;
   height: ${props => props.galleryHeight}px;
   background: var(--white);
   position: absolute;
   top: 0px;
   left: 0px;
-  margin: 20px;
+  margin: 10px;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px black solid;
 
   .image {
-    width: 80px;
-    height: 80px;
-    background: green;
+    width: 50px;
+    height: 50px;
+    margin: 0;
   }
 `;
 
 const SideGallery = ({ galleryHeight }) => {
+  const num = numImages(galleryHeight, window.innerWidth);
+  const imageList = Array(num)
+    .fill()
+    .map((_, i) => (
+      <img
+        className="image"
+        key={i}
+        src={`/assets/gallery_${
+          i < 14 ? i + 1 : Math.floor(Math.random() * 15 + 1)
+        }.png`}
+        alt="still from Cable Street"
+      />
+    ));
+
   return (
-    <SideContainer galleryHeight={galleryHeight}>
-      <div className="image">1</div>
-    </SideContainer>
+    <ImageContainer galleryHeight={galleryHeight}>{imageList}</ImageContainer>
   );
 };
 

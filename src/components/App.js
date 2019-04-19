@@ -15,6 +15,12 @@ class App extends React.Component {
     galleryHeight: null
   };
 
+  componentDidMount() {
+    window.addEventListener('resize', () =>
+      this.setGalleryHeight(window.innerHeight - 20)
+    );
+  }
+
   setGalleryHeight = height => {
     this.setState({ galleryHeight: height });
   };
