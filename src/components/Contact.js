@@ -19,9 +19,6 @@ const Main = styled.main`
     font-weight: bold;
     padding-bottom: 1em;
     transition: all 0.3s ease-out;
-    :hover {
-      color: var(--white);
-    }
   }
 
   a.pgp {
@@ -45,9 +42,6 @@ const Main = styled.main`
       font-weight: bold;
       letter-spacing: 0.05em;
       transition: all 0.3s ease-out;
-      :hover {
-        color: var(--white);
-      }
     }
   }
 
@@ -59,6 +53,12 @@ const Main = styled.main`
     opacity: 1;
     transition: opacity 0.4s ease-in;
   }
+
+  @media screen and (min-width: 800px) {
+    a:hover {
+      color: var(--white);
+    }
+  }
 `;
 
 class Contact extends React.Component {
@@ -67,6 +67,8 @@ class Contact extends React.Component {
     const sectionOffsetTop = this.sectionRef.offsetTop;
     const galleryHeight = sectionOffsetTop + sectionHeight - 10;
     this.props.setGalleryHeight(galleryHeight);
+
+    this.props.setSection(this.props.location.pathname);
   }
 
   render() {

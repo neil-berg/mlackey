@@ -33,6 +33,8 @@ class About extends React.Component {
     const sectionOffsetTop = this.sectionRef.offsetTop;
     const galleryHeight = sectionOffsetTop + sectionHeight - 10;
     this.props.setGalleryHeight(galleryHeight);
+
+    this.props.setSection(this.props.location.pathname);
   }
 
   render() {

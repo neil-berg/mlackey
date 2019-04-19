@@ -35,10 +35,6 @@ const Main = styled.main`
       font-weight: bold;
       padding-bottom: 0.25em;
       transition: all 0.3s ease-out;
-
-      :hover {
-        color: var(--white);
-      }
     }
 
     p.support {
@@ -49,10 +45,6 @@ const Main = styled.main`
       color: var(--black);
       font-weight: bold;
       transition: all 0.3s ease-out;
-
-      :hover {
-        color: var(--white);
-      }
     }
   }
 
@@ -64,6 +56,14 @@ const Main = styled.main`
     opacity: 1;
     transition: opacity 0.4s ease-in;
   }
+
+  @media screen and (min-width: 800px) {
+    a.trailer:hover,
+    a.premier:hover,
+    p.support a:hover {
+      color: var(--white);
+    }
+  }
 `;
 
 class Work extends React.Component {
@@ -72,6 +72,8 @@ class Work extends React.Component {
     const sectionOffsetTop = this.sectionRef.offsetTop;
     const galleryHeight = sectionOffsetTop + sectionHeight - 10;
     this.props.setGalleryHeight(galleryHeight);
+
+    this.props.setSection(this.props.location.pathname);
   }
 
   render() {
@@ -95,7 +97,12 @@ class Work extends React.Component {
               machine. Time succumbs to space in a New Cold War played out in
               materials.
             </p>
-            <a className="trailer" href="https://vimeo.com/182922960">
+            <a
+              className="trailer"
+              href="https://vimeo.com/182922960"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               TRAILER
             </a>
             <a
@@ -118,7 +125,13 @@ class Work extends React.Component {
             </p>
             <p className="support">
               Produced with support from the{' '}
-              <a href="http://sacatar.org">Sacatar Foundation</a>
+              <a
+                href="http://sacatar.org"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sacatar Foundation
+              </a>
             </p>
             <a
               className="trailer"

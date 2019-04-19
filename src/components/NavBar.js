@@ -22,68 +22,60 @@ const NavContainer = styled.ul`
   li a {
     color: var(--black);
     transition: all 0.3s ease-out;
-    :hover {
-      color: var(--white);
-    }
   }
 
   li a.selected {
     color: var(--white);
   }
+
+  // Disbale hover (stop it from sticking) on small devices
+  @media screen and (min-width: 800px) {
+    li a:hover {
+      color: lightgrey;
+    }
+  }
 `;
 
-class NavBar extends React.Component {
-  state = { navValue: 'Meredith Lackey' };
+const NavBar = ({ section }) => {
+  const navItems = [
+    { value: 'Meredith Lackey', path: '/' },
+    { value: 'Work', path: '/work' },
+    {
+      value: 'Notes',
+      path:
+        'https://docs.google.com/document/d/1BC2HZorFld9sInMfIKiXZGsLbNu1UgW5zJbdb39VeLk/edit?usp=sharing'
+    },
+    { value: 'Contact', path: '/contact' }
+  ];
 
-  setNavValue = e => {
-    if (e.target.nodeName === 'A') {
-      if (e.target.innerText !== 'Notes') {
-        this.setState({ navValue: e.target.innerText });
-      }
+  const navList = navItems.map((item, i) => {
+    if (item.value !== 'Notes') {
+      return (
+        <li key={i}>
+          <Link
+            to={`${item.path}`}
+            className={`${item.value === section ? 'selected' : ''}`}
+          >
+            {item.value}
+          </Link>
+        </li>
+      );
+    } else {
+      return (
+        <li key={i}>
+          <a href={`${item.path}`} target="_blank" rel="noopener noreferrer">
+            {item.value}
+          </a>
+        </li>
+      );
     }
-  };
+  });
 
-  render() {
-    const navItems = [
-      { value: 'Meredith Lackey', path: '/' },
-      { value: 'Work', path: '/work' },
-      {
-        value: 'Notes',
-        path:
-          'https://docs.google.com/document/d/1BC2HZorFld9sInMfIKiXZGsLbNu1UgW5zJbdb39VeLk/edit?usp=sharing'
-      },
-      { value: 'Contact', path: '/contact' }
-    ];
-    const navList = navItems.map((item, i) => {
-      if (item.value !== 'Notes') {
-        return (
-          <li key={i}>
-            <Link
-              to={`${item.path}`}
-              className={`${
-                item.value === this.state.navValue ? 'selected' : ''
-              }`}
-            >
-              {item.value}
-            </Link>
-          </li>
-        );
-      } else {
-        return (
-          <li key={i}>
-            <a href={`${item.path}`} target="_blank" rel="noopener noreferrer">
-              {item.value}
-            </a>
-          </li>
-        );
-      }
-    });
-    return (
-      <nav onClick={e => this.setNavValue(e)}>
-        <NavContainer>{navList}</NavContainer>
-      </nav>
-    );
-  }
-}
+  return (
+    <nav>
+      <NavContainer>{navList}</NavContainer>
+    </nav>
+  );
+};
 
 export default NavBar;

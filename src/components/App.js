@@ -12,7 +12,8 @@ import '../index.css';
 
 class App extends React.Component {
   state = {
-    galleryHeight: null
+    galleryHeight: null,
+    section: 'Meredith Lackey'
   };
 
   componentDidMount() {
@@ -25,32 +26,56 @@ class App extends React.Component {
     this.setState({ galleryHeight: height });
   };
 
+  setSection = location => {
+    let section = '';
+    if (location === '/') {
+      section = 'Meredith Lackey';
+    } else if (location === '/work') {
+      section = 'Work';
+    } else if (location === '/contact') {
+      section = 'Contact';
+    }
+    this.setState({ section });
+  };
+
   render() {
     return (
       <div>
         <Router>
           <SideGallery galleryHeight={this.state.galleryHeight} />
-          <NavBar />
+          <NavBar section={this.state.section} />
           <Switch>
             <Route
               exact
               path="/"
               render={props => (
-                <About {...props} setGalleryHeight={this.setGalleryHeight} />
+                <About
+                  {...props}
+                  setGalleryHeight={this.setGalleryHeight}
+                  setSection={this.setSection}
+                />
               )}
             />
             <Route
               exact
               path="/work"
               render={props => (
-                <Work {...props} setGalleryHeight={this.setGalleryHeight} />
+                <Work
+                  {...props}
+                  setGalleryHeight={this.setGalleryHeight}
+                  setSection={this.setSection}
+                />
               )}
             />
             <Route
               exact
               path="/contact"
               render={props => (
-                <Contact {...props} setGalleryHeight={this.setGalleryHeight} />
+                <Contact
+                  {...props}
+                  setGalleryHeight={this.setGalleryHeight}
+                  setSection={this.setSection}
+                />
               )}
             />
             <Route component={NotFound} />
